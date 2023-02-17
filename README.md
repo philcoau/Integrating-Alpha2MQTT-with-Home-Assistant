@@ -103,6 +103,40 @@ You will see quite a lot of text scrolling along the screen as it boots up, howe
 
 Highlighted in this pic are two elements, first is the Local IP address dedicated to your Raspberry Pi by your router.  The second is the URL which you can use to access Home Assistant on your local network via a phone, tablet or computer.
 
+### No Ethernet? 
+Whilst its best to do the configuration over a wired connection, if you must use wifi from the get go you can configure your pi400 wifi via the command line.
+
+### Configuring wlan0
+
+From the HA console you can manually configure your wireless lan.
+
+type the following command and substitute your network details as required. (The below assumes you are using an wifi router in infrastruture mode with wpa-psk)
+
+net update wlan0 --ipv4-method auto --wifi-auth wpa-psk --wifi-mode infrastructure --wifi-psk yourwifipasshere --wifi-ssid yourwifinetworknamehere
+
+You can find more information on the string options and usage by typing 'help net update' from the console. 
+
+If your configuration line is correct once set, your device will connect and obtain an IP. 
+
+Type 'banner' to refresh your header and see the IP.
+![Pic 1](Images/Pic1.PNG)
+
+### Hint 
+You may need to restart your host after configuring wifi using the command
+
+host reboot
+
+You can scan the air around your device to see networks by typing
+
+net scan wlan0
+
+you should see a list of all the ssid detected. 
+
+### Else
+Fall back to wired, finish the steps below and use steps outlined at the end of this document to configure wifi via the HA web interface.
+
+
+
 
 As such, open Chrome or any browser of your choice and navigate to http://homeassistant.local:8123/ or in my case, I can navigate to http://192.168.1.112:8123/ as that is the Local IP address given to my Raspberry Pi by my router.  Your Local IP address will be different to mine.
 
@@ -910,7 +944,7 @@ Follow the steps as per Alpha, however, for info, I used the following settings:
 
 
 - Name: Alpha Control
-- Icon: mdi-remote
+- Icon: mdi:remote
 - Show in Sidebar: ticked
 
 
@@ -926,7 +960,7 @@ Follow the steps as per Alpha, however, for info, I used the following settings:
 
 
 - Name: Alpha Read Register
-- Icon: mdi-database-export
+- Icon: mdi:database-export
 - Show in Sidebar: ticked
 
 
@@ -942,7 +976,7 @@ Follow the steps as per Alpha, however, for info, I used the following settings:
 
 
 - Name: Alpha Write Register
-- Icon: mdi-database-import
+- Icon: mdi:database-import
 - Show in Sidebar: ticked
 
 
